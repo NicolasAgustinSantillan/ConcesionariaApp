@@ -4,6 +4,21 @@ GO
 USE [Concesionaria_DB];
 GO
 
+CREATE TABLE [Vehiculos] (
+    [Id] INT IDENTITY(1,1) PRIMARY KEY,
+    [Vehiculo_Codigo] VARCHAR(10),
+    [Vehiculo_Tipo] VARCHAR(50),
+    [Vehiculo_Marca] VARCHAR(50),
+    [Vehiculo_Modelo] VARCHAR(50),
+    [Vehiculo_Año] INT,
+    [Vehiculo_Caracteristicas] VARCHAR(255),
+    [Vehiculo_Patente] VARCHAR(50),
+    [Vehiculo_Condicion] VARCHAR(50),
+    [Vehiculo_Kilometraje] INT,
+    [Vehiculo_Precio] DECIMAL(10, 2),
+    [Vehiculo_Ingreso] DATETIME
+);
+
 INSERT INTO [Vehiculos] (
     [Vehiculo_Codigo],
     [Vehiculo_Tipo],

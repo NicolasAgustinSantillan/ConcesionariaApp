@@ -34,6 +34,7 @@
             this.rbModificar = new System.Windows.Forms.RadioButton();
             this.rbAlta = new System.Windows.Forms.RadioButton();
             this.gbDatosVehiculo = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.dtpIngreso = new System.Windows.Forms.DateTimePicker();
             this.txtCarac = new System.Windows.Forms.TextBox();
             this.txtKM = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbDatosVehiculo.SuspendLayout();
             this.SuspendLayout();
@@ -156,6 +156,16 @@
             this.gbDatosVehiculo.TabStop = false;
             this.gbDatosVehiculo.Text = "Datos";
             // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(305, 45);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.TabIndex = 35;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // dtpIngreso
             // 
             this.dtpIngreso.Location = new System.Drawing.Point(472, 199);
@@ -166,6 +176,7 @@
             // txtCarac
             // 
             this.txtCarac.Location = new System.Drawing.Point(119, 261);
+            this.txtCarac.MaxLength = 100;
             this.txtCarac.Name = "txtCarac";
             this.txtCarac.Size = new System.Drawing.Size(520, 20);
             this.txtCarac.TabIndex = 33;
@@ -173,13 +184,16 @@
             // txtKM
             // 
             this.txtKM.Location = new System.Drawing.Point(472, 160);
+            this.txtKM.MaxLength = 10;
             this.txtKM.Name = "txtKM";
             this.txtKM.Size = new System.Drawing.Size(214, 20);
             this.txtKM.TabIndex = 31;
+            this.txtKM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKM_KeyPress);
             // 
             // txtPatente
             // 
             this.txtPatente.Location = new System.Drawing.Point(472, 124);
+            this.txtPatente.MaxLength = 10;
             this.txtPatente.Name = "txtPatente";
             this.txtPatente.Size = new System.Drawing.Size(214, 20);
             this.txtPatente.TabIndex = 30;
@@ -187,6 +201,7 @@
             // txtModelo
             // 
             this.txtModelo.Location = new System.Drawing.Point(472, 90);
+            this.txtModelo.MaxLength = 50;
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(214, 20);
             this.txtModelo.TabIndex = 29;
@@ -194,6 +209,7 @@
             // txtTipo
             // 
             this.txtTipo.Location = new System.Drawing.Point(472, 46);
+            this.txtTipo.MaxLength = 50;
             this.txtTipo.Name = "txtTipo";
             this.txtTipo.Size = new System.Drawing.Size(214, 20);
             this.txtTipo.TabIndex = 28;
@@ -201,13 +217,16 @@
             // txtPrecio
             // 
             this.txtPrecio.Location = new System.Drawing.Point(74, 199);
+            this.txtPrecio.MaxLength = 15;
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(214, 20);
             this.txtPrecio.TabIndex = 27;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // txtCondicion
             // 
             this.txtCondicion.Location = new System.Drawing.Point(74, 160);
+            this.txtCondicion.MaxLength = 50;
             this.txtCondicion.Name = "txtCondicion";
             this.txtCondicion.Size = new System.Drawing.Size(214, 20);
             this.txtCondicion.TabIndex = 26;
@@ -215,13 +234,16 @@
             // txtAnio
             // 
             this.txtAnio.Location = new System.Drawing.Point(74, 124);
+            this.txtAnio.MaxLength = 8;
             this.txtAnio.Name = "txtAnio";
             this.txtAnio.Size = new System.Drawing.Size(214, 20);
             this.txtAnio.TabIndex = 25;
+            this.txtAnio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnio_KeyPress);
             // 
             // txtMarca
             // 
             this.txtMarca.Location = new System.Drawing.Point(74, 90);
+            this.txtMarca.MaxLength = 50;
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(214, 20);
             this.txtMarca.TabIndex = 24;
@@ -229,6 +251,7 @@
             // txtCodigo
             // 
             this.txtCodigo.Location = new System.Drawing.Point(74, 49);
+            this.txtCodigo.MaxLength = 50;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(214, 20);
             this.txtCodigo.TabIndex = 23;
@@ -350,16 +373,6 @@
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Location = new System.Drawing.Point(305, 45);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 35;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // FormABM
             // 
