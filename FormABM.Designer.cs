@@ -251,7 +251,7 @@
             // txtCodigo
             // 
             this.txtCodigo.Location = new System.Drawing.Point(74, 49);
-            this.txtCodigo.MaxLength = 50;
+            this.txtCodigo.MaxLength = 10;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(214, 20);
             this.txtCodigo.TabIndex = 23;
@@ -373,6 +373,7 @@
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FormABM
             // 

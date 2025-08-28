@@ -192,21 +192,6 @@ namespace ConcesionariaApp
                     LimpiarControles(c);
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            txtCodigo.Clear();
-            txtMarca.Clear();
-            txtAnio.Clear();
-            txtCarac.Clear();
-            txtCondicion.Clear();
-            txtKM.Clear();
-            txtPatente.Clear();
-            txtPrecio.Clear();
-            txtTipo.Clear();
-            txtModelo.Clear();
-            
-            
-        }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -277,6 +262,20 @@ namespace ConcesionariaApp
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtCodigo.Clear();
+            txtMarca.Clear();
+            txtAnio.Clear();
+            txtCarac.Clear();
+            txtCondicion.Clear();
+            txtKM.Clear();
+            txtPatente.Clear();
+            txtPrecio.Clear();
+            txtTipo.Clear();
+            txtModelo.Clear();
         }
     }
 }
