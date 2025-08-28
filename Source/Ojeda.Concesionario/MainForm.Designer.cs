@@ -144,6 +144,7 @@ namespace Ojeda.Concesionario
             tableLayoutPanel_ALL.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel_ALL.Size = new Size(927, 534);
             tableLayoutPanel_ALL.TabIndex = 0;
+            tableLayoutPanel_ALL.MouseDown += Form_MouseDown;
             // 
             // panel_top
             // 
