@@ -203,6 +203,7 @@ namespace Ojeda.Concesionario
             btn_minimize.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btn_minimize.UseAccentColor = false;
             btn_minimize.UseVisualStyleBackColor = true;
+            btn_minimize.Click += btn_minimize_Click;
             // 
             // panel_left
             // 

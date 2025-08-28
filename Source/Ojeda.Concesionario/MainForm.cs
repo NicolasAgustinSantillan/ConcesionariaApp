@@ -27,14 +27,15 @@ namespace Ojeda.Concesionario
             this.Close();
         }
 
-        private void btn_minimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
         private void panel_main_Resize(object sender, EventArgs e)
         {
             Desing.RoundPanel(panel_main, 15);
+        }
+
+        private void btn_minimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+
         }
     }
 }
