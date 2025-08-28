@@ -1,4 +1,4 @@
-using System.Drawing;
+using Ojeda.Concesionario.Resources;
 
 namespace Ojeda.Concesionario
 {
@@ -9,7 +9,6 @@ namespace Ojeda.Concesionario
         {
             InitializeComponent();
 
-            this.FormBorderStyle = FormBorderStyle.None;
             this.Padding = new Padding(RESIZE);          // <-- borde libre para el resize
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             this.DoubleBuffered = true;
@@ -20,7 +19,7 @@ namespace Ojeda.Concesionario
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            Desing.RoundPanel(panel_main, 15);
         }
 
         private void btn_close_Click(object sender, EventArgs e)
@@ -31,6 +30,11 @@ namespace Ojeda.Concesionario
         private void btn_minimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void panel_main_Resize(object sender, EventArgs e)
+        {
+            Desing.RoundPanel(panel_main, 15);
         }
     }
 }
