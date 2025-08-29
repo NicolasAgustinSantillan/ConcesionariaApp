@@ -42,15 +42,28 @@ namespace Ojeda.Concesionario
 
         private void btn_CarsList_Click(object sender, EventArgs e)
         {
-            panel_main.Controls.Clear();
-
             var view = new CarListView();
-            view.TopLevel = false;
-            view.FormBorderStyle = FormBorderStyle.None;
-            view.Dock = DockStyle.Fill;   
+            LoadFormInMainPanel(view);
+        }
+
+        private void LoadFormInMainPanel (Form form)
+        {
+            panel_main.Controls.Clear();
+            var task = Task.Run(() =>
+            {
+                var view = form;
+                view.TopLevel = false;
+                view.FormBorderStyle = FormBorderStyle.None;
+                view.Dock = DockStyle.Fill;
+                return view;
+            });
+
+            task.Wait();
+            var view = task.Result;
 
             panel_main.Controls.Add(view);
             view.Show();
         }
+
     }
 }
