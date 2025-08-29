@@ -20,6 +20,7 @@
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -29,8 +30,9 @@
         private void InitializeComponent()
         {
             tableLayoutPanel1 = new TableLayoutPanel();
-            Cars_ListView = new MaterialSkin.Controls.MaterialListView();
+            dgv_cars = new DataGridView();
             tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgv_cars).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -39,7 +41,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Controls.Add(Cars_ListView, 1, 1);
+            tableLayoutPanel1.Controls.Add(dgv_cars, 1, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -49,26 +51,19 @@
             tableLayoutPanel1.Size = new Size(1000, 600);
             tableLayoutPanel1.TabIndex = 0;
             // 
-            // Cars_ListView
+            // dgv_cars
             // 
-            Cars_ListView.AutoSizeTable = false;
-            Cars_ListView.BackColor = Color.FromArgb(255, 255, 255);
-            Cars_ListView.BorderStyle = BorderStyle.None;
-            Cars_ListView.Depth = 0;
-            Cars_ListView.Dock = DockStyle.Fill;
-            Cars_ListView.FullRowSelect = true;
-            Cars_ListView.Location = new Point(23, 53);
-            Cars_ListView.MinimumSize = new Size(200, 100);
-            Cars_ListView.MouseLocation = new Point(-1, -1);
-            Cars_ListView.MouseState = MaterialSkin.MouseState.OUT;
-            Cars_ListView.Name = "Cars_ListView";
-            Cars_ListView.OwnerDraw = true;
-            Cars_ListView.Size = new Size(954, 544);
-            Cars_ListView.TabIndex = 0;
-            Cars_ListView.UseCompatibleStateImageBehavior = false;
-            Cars_ListView.View = System.Windows.Forms.View.Details;
+            dgv_cars.AllowUserToAddRows = false;
+            dgv_cars.AllowUserToDeleteRows = false;
+            dgv_cars.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_cars.Dock = DockStyle.Fill;
+            dgv_cars.Location = new Point(23, 53);
+            dgv_cars.Name = "dgv_cars";
+            dgv_cars.ReadOnly = true;
+            dgv_cars.Size = new Size(954, 544);
+            dgv_cars.TabIndex = 0;
             // 
-            // CarList
+            // CarListView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -76,15 +71,16 @@
             ClientSize = new Size(1000, 600);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CarList";
+            Name = "CarListView";
             Text = "CarList";
             tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgv_cars).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private TableLayoutPanel tableLayoutPanel1;
-        private MaterialSkin.Controls.MaterialListView Cars_ListView;
+        private DataGridView dgv_cars;
     }
 }
