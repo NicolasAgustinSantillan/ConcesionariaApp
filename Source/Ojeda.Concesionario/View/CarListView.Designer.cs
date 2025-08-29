@@ -1,6 +1,6 @@
 ﻿namespace Ojeda.Concesionario.View
 {
-    partial class CarList
+    partial class CarListView
     {
         /// <summary>
         /// Required designer variable.

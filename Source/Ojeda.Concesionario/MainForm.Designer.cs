@@ -121,9 +121,13 @@ namespace Ojeda.Concesionario
             btn_close = new MaterialSkin.Controls.MaterialButton();
             btn_minimize = new MaterialSkin.Controls.MaterialButton();
             panel_left = new Panel();
+            btn_CarsList = new MaterialSkin.Controls.MaterialButton();
+            label1 = new Label();
+            btn_home = new MaterialSkin.Controls.MaterialButton();
             panel_main = new Panel();
             tableLayoutPanel_ALL.SuspendLayout();
             panel_top.SuspendLayout();
+            panel_left.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel_ALL
@@ -208,6 +212,9 @@ namespace Ojeda.Concesionario
             // panel_left
             // 
             panel_left.BackColor = Color.FromArgb(233, 238, 246);
+            panel_left.Controls.Add(btn_CarsList);
+            panel_left.Controls.Add(label1);
+            panel_left.Controls.Add(btn_home);
             panel_left.Dock = DockStyle.Fill;
             panel_left.Location = new Point(5, 45);
             panel_left.Margin = new Padding(5);
@@ -215,6 +222,56 @@ namespace Ojeda.Concesionario
             panel_left.Size = new Size(190, 550);
             panel_left.TabIndex = 1;
             panel_left.MouseDown += Form_MouseDown;
+            // 
+            // btn_CarsList
+            // 
+            btn_CarsList.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btn_CarsList.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_CarsList.Depth = 0;
+            btn_CarsList.Dock = DockStyle.Top;
+            btn_CarsList.HighEmphasis = true;
+            btn_CarsList.Icon = null;
+            btn_CarsList.Location = new Point(0, 51);
+            btn_CarsList.Margin = new Padding(4, 6, 4, 6);
+            btn_CarsList.MouseState = MaterialSkin.MouseState.HOVER;
+            btn_CarsList.Name = "btn_CarsList";
+            btn_CarsList.NoAccentTextColor = Color.Empty;
+            btn_CarsList.Size = new Size(190, 36);
+            btn_CarsList.TabIndex = 0;
+            btn_CarsList.Text = "Listado Autos";
+            btn_CarsList.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_CarsList.UseAccentColor = false;
+            btn_CarsList.UseVisualStyleBackColor = true;
+            btn_CarsList.Click += btn_CarsList_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Dock = DockStyle.Top;
+            label1.Location = new Point(0, 36);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 15);
+            label1.TabIndex = 2;
+            // 
+            // btn_home
+            // 
+            btn_home.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btn_home.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_home.Depth = 0;
+            btn_home.Dock = DockStyle.Top;
+            btn_home.HighEmphasis = true;
+            btn_home.Icon = null;
+            btn_home.Location = new Point(0, 0);
+            btn_home.Margin = new Padding(4, 15, 4, 6);
+            btn_home.MouseState = MaterialSkin.MouseState.HOVER;
+            btn_home.Name = "btn_home";
+            btn_home.NoAccentTextColor = Color.Empty;
+            btn_home.Size = new Size(190, 36);
+            btn_home.TabIndex = 1;
+            btn_home.Text = "Home";
+            btn_home.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_home.UseAccentColor = false;
+            btn_home.UseVisualStyleBackColor = true;
             // 
             // panel_main
             // 
@@ -247,6 +304,8 @@ namespace Ojeda.Concesionario
             tableLayoutPanel_ALL.PerformLayout();
             panel_top.ResumeLayout(false);
             panel_top.PerformLayout();
+            panel_left.ResumeLayout(false);
+            panel_left.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -258,5 +317,8 @@ namespace Ojeda.Concesionario
         private Panel panel_main;
         private MaterialSkin.Controls.MaterialButton btn_close;
         private MaterialSkin.Controls.MaterialButton btn_minimize;
+        private MaterialSkin.Controls.MaterialButton btn_CarsList;
+        private MaterialSkin.Controls.MaterialButton btn_home;
+        private Label label1;
     }
 }

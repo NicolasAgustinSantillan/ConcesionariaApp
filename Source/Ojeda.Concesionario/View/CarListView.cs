@@ -3,11 +3,11 @@ using Ojeda.Concesionario.DB.Entities;
 
 namespace Ojeda.Concesionario.View
 {
-    public partial class CarList : Form
+    public partial class CarListView : Form
     {
         private CarRepository carRepository;
 
-        public CarList()
+        public CarListView()
         {
             InitializeComponent();
 

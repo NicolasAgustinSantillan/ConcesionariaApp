@@ -1,4 +1,6 @@
 using Ojeda.Concesionario.Resources;
+using Ojeda.Concesionario.View;
+using System.Windows.Forms;
 
 namespace Ojeda.Concesionario
 {
@@ -36,6 +38,19 @@ namespace Ojeda.Concesionario
         {
             this.WindowState = FormWindowState.Minimized;
 
+        }
+
+        private void btn_CarsList_Click(object sender, EventArgs e)
+        {
+            panel_main.Controls.Clear();
+
+            var view = new CarListView();
+            view.TopLevel = false;
+            view.FormBorderStyle = FormBorderStyle.None;
+            view.Dock = DockStyle.Fill;   
+
+            panel_main.Controls.Add(view);
+            view.Show();
         }
     }
 }
