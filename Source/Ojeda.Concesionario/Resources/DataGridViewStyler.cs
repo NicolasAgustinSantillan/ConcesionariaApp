@@ -1,4 +1,6 @@
-﻿namespace Ojeda.Concesionario.Resources
+﻿using System.Drawing.Drawing2D;
+
+namespace Ojeda.Concesionario.Resources
 {
     public static class DataGridViewStyler
     {
