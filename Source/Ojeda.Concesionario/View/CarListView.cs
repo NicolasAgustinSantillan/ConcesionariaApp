@@ -15,6 +15,7 @@ namespace Ojeda.Concesionario.View
             { "Model",  "Modelo"    },
             { "Price",  "Precio"    }
         };
+        private List<Car> carsList;
 
         public CarListView()
         {
@@ -29,13 +30,29 @@ namespace Ojeda.Concesionario.View
 
         private void LoadData()
         {
-            var cars = carRepository.Get();
+            this.carsList = carRepository.Get();
 
-            foreach (var v in cars)
+            foreach (var v in carsList)
             {
-                this.dgv_cars.Rows.Add(v.Id.ToString(), v.Brand, v.Model, v.Price.ToString("C"));
+                this.dgv_cars.Rows.Add(
+                    v.Id.ToString(), 
+                    v.Brand, 
+                    v.Model, 
+                    v.Price.ToString("C"));
             }
         }
 
+        private Car? CurrentCarSelected()
+        {
+            if (dgv_cars.CurrentRow != null)
+            {
+                var result = int.TryParse(dgv_cars.CurrentRow.Cells["Id"].Value?.ToString(), out int id);
+                if (result)
+                {
+                    return carsList?.Where(c => c.Id == id).FirstOrDefault();
+                }
+            }
+            return null;
+        }
     }
 }

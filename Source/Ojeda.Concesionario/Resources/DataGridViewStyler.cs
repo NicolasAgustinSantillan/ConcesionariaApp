@@ -4,7 +4,6 @@
     {
         public static void ApplyDefaultStyle(DataGridView dgv, Dictionary<string, string> columns)
         {
-
             dgv.Dock = DockStyle.Fill;
             dgv.ReadOnly = true;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
