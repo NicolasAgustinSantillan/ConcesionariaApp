@@ -1,17 +1,26 @@
+using Microsoft.Extensions.Configuration;
+using Ojeda.Concesionario.DB.DataAccess;
+using System.IO;
+
 namespace Ojeda.Concesionario
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        public static string ConnectionString { get; set; }
+
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            var config = new ConfigurationBuilder()
+                .AddJsonFile(Path.Combine(AppContext.BaseDirectory, "appsettings.json"), optional: false, reloadOnChange: true)
+                .Build();
+
+            ConnectionString = config.GetConnectionString("ConcesionariaDb");
+
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
+
         }
+
     }
 }
