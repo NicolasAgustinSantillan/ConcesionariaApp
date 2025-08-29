@@ -14,5 +14,10 @@
         public decimal Price { get; set; }
         public bool Active { get; set; }
         public DateTime IncomeDate { get; set; }
+
+        public Car()
+        {
+
+        }
     }
 }
