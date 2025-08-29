@@ -1,4 +1,7 @@
-﻿using System.Drawing.Drawing2D;
+﻿using Ojeda.Concesionario.DB.Entities;
+using System.ComponentModel;
+using System.Drawing.Drawing2D;
+using System.Reflection;
 
 namespace Ojeda.Concesionario.Resources
 {
@@ -40,8 +43,27 @@ namespace Ojeda.Concesionario.Resources
 
             foreach (var column in columns)
             {
-                dgv.Columns.Add(column.Key, column.Value);
+                var col = dgv.Columns.Add(column.Key, column.Value);
+                if (column.Key == column.Value)
+                {
+                    dgv.Columns[col].Visible = false;
+                }
             }
+        }
+        
+        public static Dictionary<string, string> GetColumnd(Type type)
+        {
+            var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var columns = props.ToDictionary(
+                p => p.Name,
+                p =>
+                {
+                    var attr = p.GetCustomAttribute<DisplayNameAttribute>();
+                    return attr?.DisplayName ?? p.Name;
+                }
+            );
+
+            return columns;
         }
     }
 }

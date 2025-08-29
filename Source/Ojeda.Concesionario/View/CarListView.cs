@@ -8,13 +8,8 @@ namespace Ojeda.Concesionario.View
     {
         private CarRepository carRepository;
 
-        private Dictionary<string, string> columns = new Dictionary<string, string>()
-        {
-            { "Id",     "Id"        },
-            { "Brand",  "Marca"     },
-            { "Model",  "Modelo"    },
-            { "Price",  "Precio"    }
-        };
+        private Dictionary<string, string> columns;
+
         private List<Car> carsList;
 
         public CarListView()
@@ -22,6 +17,8 @@ namespace Ojeda.Concesionario.View
             InitializeComponent();
 
             this.carRepository = new CarRepository(Program.ConnectionString);
+
+            this.columns = DataGridViewStyler.GetColumnd(typeof(Car));
 
             DataGridViewStyler.ApplyDefaultStyle(this.dgv_cars, this.columns);
 
@@ -35,10 +32,19 @@ namespace Ojeda.Concesionario.View
             foreach (var v in carsList)
             {
                 this.dgv_cars.Rows.Add(
-                    v.Id.ToString(), 
-                    v.Brand, 
-                    v.Model, 
-                    v.Price.ToString("C"));
+                    v.Id.ToString(),
+                    v.Code,
+                    v.Brand,
+                    v.Model,
+                    v.Kilometers,
+                    v.Price.ToString("C"),
+                    v.Type,
+                    v.Year,
+                    v.Description,
+                    v.Patent,
+                    v.Active,
+                    v.IncomeDate
+                );
             }
         }
 
