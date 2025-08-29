@@ -4,7 +4,7 @@ using Ojeda.Concesionario.Resources;
 
 namespace Ojeda.Concesionario.View
 {
-    public partial class CarListView : Form
+    public partial class CarListView : DataGridCustom
     {
         private CarRepository carRepository;
 
@@ -18,16 +18,27 @@ namespace Ojeda.Concesionario.View
 
             this.carRepository = new CarRepository(Program.ConnectionString);
 
-            this.columns = DataGridViewStyler.GetColumnd(typeof(Car));
+            this.columns = GetColums(typeof(Car));
 
-            DataGridViewStyler.ApplyDefaultStyle(this.dgv_cars, this.columns);
+            ApplyDefaultStyle(this.dgv_cars, this.columns);
+
+            AddActionColumn(this.dgv_cars);
 
             this.LoadData();
         }
 
         private void LoadData()
         {
-            this.carsList = carRepository.Get();
+            try
+            {
+                this.dgv_cars.Rows.Clear();
+            }
+            catch {}
+
+            Task.Run(() =>
+            {
+                this.carsList = carRepository.Get();
+            }).Wait();
 
             foreach (var v in carsList)
             {
@@ -59,6 +70,37 @@ namespace Ojeda.Concesionario.View
                 }
             }
             return null;
+        }
+
+        private void dgv_cars_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            base.CellPainting(dgv_cars, e);
+        }
+
+        private void dgv_cars_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var action = GetAction(dgv_cars, e);
+
+            if (action == ActionEnum.None)
+            {
+                return;
+            }
+
+            var carSelected = CurrentCarSelected();
+
+            if (action == ActionEnum.Edit)
+            {
+                MessageBox.Show($"Editar fila {e.RowIndex}");
+            }
+            else if (action == ActionEnum.Delete)
+            {
+                if (MessageDialog.ConfirmDelete(carSelected.Brand))
+                {
+                    carRepository.Delete(carSelected.Id);
+                }
+            }
+
+            this.LoadData();
         }
     }
 }

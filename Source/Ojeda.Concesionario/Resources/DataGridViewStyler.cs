@@ -1,12 +1,31 @@
-﻿using Ojeda.Concesionario.DB.Entities;
+﻿using Ojeda.Concesionario.DB.DataAccess;
 using System.ComponentModel;
-using System.Drawing.Drawing2D;
 using System.Reflection;
 
 namespace Ojeda.Concesionario.Resources
 {
-    public static class DataGridViewStyler
+    public abstract class DataGridCustom : Form
     {
+        public const string ActionColum = "Acciones";
+        protected void CellPainting(DataGridView dgv, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex == dgv.Columns[ActionColum].Index && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                int buttonWidth = (e.CellBounds.Width - 10) / 2;
+                int buttonHeight = e.CellBounds.Height - 6;
+
+                Rectangle editButton = new Rectangle(e.CellBounds.Left + 5, e.CellBounds.Top + 3, buttonWidth, buttonHeight);
+                Rectangle deleteButton = new Rectangle(e.CellBounds.Left + buttonWidth + 10, e.CellBounds.Top + 3, buttonWidth, buttonHeight);
+
+                ButtonRenderer.DrawButton(e.Graphics, editButton, "🖋️", dgv.Font, false, System.Windows.Forms.VisualStyles.PushButtonState.Normal);
+                ButtonRenderer.DrawButton(e.Graphics, deleteButton, "♻️", dgv.Font, false, System.Windows.Forms.VisualStyles.PushButtonState.Normal);
+
+                e.Handled = true;
+            }
+        }
+
         public static void ApplyDefaultStyle(DataGridView dgv, Dictionary<string, string> columns)
         {
             dgv.Dock = DockStyle.Fill;
@@ -50,8 +69,8 @@ namespace Ojeda.Concesionario.Resources
                 }
             }
         }
-        
-        public static Dictionary<string, string> GetColumnd(Type type)
+
+        public static Dictionary<string, string> GetColums(Type type)
         {
             var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             var columns = props.ToDictionary(
@@ -65,5 +84,52 @@ namespace Ojeda.Concesionario.Resources
 
             return columns;
         }
+
+        public static void AddActionColumn(DataGridView dgv)
+        {
+            // Evito agregarla dos veces
+            if (dgv.Columns.Contains("Acciones"))
+                return;
+
+            DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn();
+            btnCol.HeaderText = "Acciones";
+            btnCol.Name = "Acciones";
+            btnCol.Text = "Editar/Eliminar";   // texto por defecto
+            btnCol.UseColumnTextForButtonValue = false; // usamos texto dinámico
+            dgv.Columns.Add(btnCol);
+        }
+
+        public static ActionEnum GetAction(DataGridView dgv, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgv.Columns[ActionColum].Index)
+            {
+                var cellBounds = dgv.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+
+                int buttonWidth = (cellBounds.Width - 10) / 2;
+
+                // Coordenadas del clic
+                var clickX = dgv.PointToClient(Cursor.Position).X - cellBounds.Left;
+
+
+                if(clickX < buttonWidth + 5)
+                {
+                    return ActionEnum.Edit;
+                }
+                else
+                {
+                    return ActionEnum.Delete;
+                }
+            }
+
+            return ActionEnum.None;
+        }
     }
+
+    public enum ActionEnum
+    {
+        Edit = 1,
+        Delete = 2,
+        None = 3
+    }
+
 }

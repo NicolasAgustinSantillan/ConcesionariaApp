@@ -79,6 +79,8 @@
             dgv_cars.ReadOnly = true;
             dgv_cars.Size = new Size(954, 544);
             dgv_cars.TabIndex = 0;
+            dgv_cars.CellClick += dgv_cars_CellClick;
+            dgv_cars.CellPainting += dgv_cars_CellPainting;
             // 
             // CarListView
             // 
