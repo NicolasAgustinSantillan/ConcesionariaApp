@@ -146,7 +146,7 @@ namespace Ojeda.Concesionario
             tableLayoutPanel_ALL.RowCount = 2;
             tableLayoutPanel_ALL.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel_ALL.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel_ALL.Size = new Size(1400, 800);
+            tableLayoutPanel_ALL.Size = new Size(1400, 900);
             tableLayoutPanel_ALL.TabIndex = 0;
             tableLayoutPanel_ALL.MouseDown += Form_MouseDown;
             // 
@@ -219,7 +219,7 @@ namespace Ojeda.Concesionario
             panel_left.Location = new Point(5, 45);
             panel_left.Margin = new Padding(5);
             panel_left.Name = "panel_left";
-            panel_left.Size = new Size(190, 750);
+            panel_left.Size = new Size(190, 850);
             panel_left.TabIndex = 1;
             panel_left.MouseDown += Form_MouseDown;
             // 
@@ -281,7 +281,7 @@ namespace Ojeda.Concesionario
             panel_main.Dock = DockStyle.Fill;
             panel_main.Location = new Point(203, 43);
             panel_main.Name = "panel_main";
-            panel_main.Size = new Size(1194, 754);
+            panel_main.Size = new Size(1194, 854);
             panel_main.TabIndex = 2;
             panel_main.MouseDown += Form_MouseDown;
             panel_main.Resize += panel_main_Resize;
@@ -291,7 +291,7 @@ namespace Ojeda.Concesionario
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(242, 246, 252);
-            ClientSize = new Size(1400, 800);
+            ClientSize = new Size(1400, 900);
             Controls.Add(tableLayoutPanel_ALL);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");

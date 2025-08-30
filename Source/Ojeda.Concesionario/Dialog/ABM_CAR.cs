@@ -16,6 +16,8 @@ namespace Ojeda.Concesionario.Dialog
         {
             InitializeComponent();
 
+            this.Padding = new Padding(2);
+
             this.isEdit = car != null;
             this.carRepository = carRepository;
 

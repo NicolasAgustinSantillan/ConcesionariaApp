@@ -20,6 +20,16 @@
             base.Dispose(disposing);
         }
 
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            using (Pen pen = new Pen(Color.Black, 2)) // borde negro de 2px
+            {
+                e.Graphics.DrawRectangle(pen, 0, 0, this.Width - 1, this.Height - 1);
+            }
+        }
+
+
         #region Windows Form Designer generated code
 
         /// <summary>
