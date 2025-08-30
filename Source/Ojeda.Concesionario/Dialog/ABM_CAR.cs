@@ -1,6 +1,7 @@
 ﻿using Ojeda.Concesionario.DB.DataAccess;
 using Ojeda.Concesionario.DB.Entities;
 using Ojeda.Concesionario.Resources;
+using System.Runtime.InteropServices;
 
 namespace Ojeda.Concesionario.Dialog
 {
@@ -58,6 +59,18 @@ namespace Ojeda.Concesionario.Dialog
             this.txt_description.Text = this.Car.Description;
             this.txt_patent.Text = this.Car.Patent;
 
+            if (Car.Photo != null)
+            {
+                using (var ms = new MemoryStream(Car.Photo))
+                {
+                    pic_photo.Image = Image.FromStream(ms);
+                }
+            }
+            else
+            {
+                pic_photo.Image = null; // o una imagen por defecto
+            }
+
         }
 
         private void btn_accept_click(object sender, EventArgs e)
@@ -91,9 +104,9 @@ namespace Ojeda.Concesionario.Dialog
                 error = true;
 
 
-            if (!isEdit && !error) 
+            if (!isEdit && !error)
                 this.txt_code.Text = this.txt_brand.Text.Substring(0, 1).ToUpper() +
-                    this.txt_model.Text.Substring(0, 1).ToUpper() + 
+                    this.txt_model.Text.Substring(0, 1).ToUpper() +
                     Convert.ToString(new Random().Next(1000, 10000));
 
             if (this.txt_kilometers.Text == "")
@@ -134,5 +147,36 @@ namespace Ojeda.Concesionario.Dialog
             this.Close();
         }
 
+        private void btn_loadphoto_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Imágenes|*.jpg;*.jpeg;*.png;*.bmp";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    var imageBytes = File.ReadAllBytes(ofd.FileName);
+                    this.Car.Photo = imageBytes;
+
+                    pic_photo.Image = Image.FromFile(ofd.FileName);
+                }
+            }
+
+        }
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        private void tableLayoutPanel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
     }
 }

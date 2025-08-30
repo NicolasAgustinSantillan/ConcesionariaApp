@@ -9,6 +9,7 @@
     [Patent] VARCHAR(50),
     [Kilometers] INT DEFAULT 0,
     [Price] DECIMAL(10, 2) DEFAULT 0.00,
+    [Photo] VARBINARY(MAX) DEFAULT NULL,
     [Active] BIT DEFAULT 1,
     [IncomeDate] DATETIME DEFAULT GETDATE()
 );

@@ -17,8 +17,8 @@ namespace Ojeda.Concesionario.DB.DataAccess
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 string query = @"INSERT INTO Car 
-                                (Code, Type, Brand, Model, Year, Description, Patent, Kilometers, Price, Active, IncomeDate) 
-                                VALUES (@Code, @Type, @Brand, @Model, @Year, @Description, @Patent, @Kilometers, @Price, 1, @IncomeDate)";
+                        (Code, Type, Brand, Model, Year, Description, Patent, Kilometers, Price, Active, IncomeDate, Photo) 
+                        VALUES (@Code, @Type, @Brand, @Model, @Year, @Description, @Patent, @Kilometers, @Price, 1, @IncomeDate, @Photo)";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Code", v.Code);
@@ -31,20 +31,23 @@ namespace Ojeda.Concesionario.DB.DataAccess
                 cmd.Parameters.AddWithValue("@Kilometers", v.Kilometers);
                 cmd.Parameters.AddWithValue("@Price", v.Price);
                 cmd.Parameters.AddWithValue("@IncomeDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@Photo", (object)v.Photo ?? DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
+
         public void Update(Car v)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 string query = @"UPDATE Car SET 
-                                Code=@Code, Type=@Type, Brand=@Brand, Model=@Model, Year=@Year, 
-                                Description=@Description, Patent=@Patent, Kilometers=@Kilometers, Price=@Price
-                                WHERE Id=@Id";
+                Code=@Code, Type=@Type, Brand=@Brand, Model=@Model, Year=@Year, 
+                Description=@Description, Patent=@Patent, Kilometers=@Kilometers, Price=@Price, Photo=@Photo
+                WHERE Id=@Id";
+
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", v.Id);
@@ -57,6 +60,7 @@ namespace Ojeda.Concesionario.DB.DataAccess
                 cmd.Parameters.AddWithValue("@Patent", v.Patent);
                 cmd.Parameters.AddWithValue("@Kilometers", v.Kilometers);
                 cmd.Parameters.AddWithValue("@Price", v.Price);
+                cmd.Parameters.AddWithValue("@Photo", (object)v.Photo ?? DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -128,7 +132,8 @@ namespace Ojeda.Concesionario.DB.DataAccess
                 Kilometers = Convert.ToInt32(reader["Kilometers"]),
                 Price = Convert.ToDecimal(reader["Price"]),
                 Active = Convert.ToBoolean(reader["Active"]),
-                IncomeDate = Convert.ToDateTime(reader["IncomeDate"])
+                IncomeDate = Convert.ToDateTime(reader["IncomeDate"]),
+                Photo = reader["Photo"] == DBNull.Value ? null : (byte[])reader["Photo"]
             };
         }
     }

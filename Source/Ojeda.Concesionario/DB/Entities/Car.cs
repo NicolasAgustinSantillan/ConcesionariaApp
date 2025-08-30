@@ -33,6 +33,9 @@ namespace Ojeda.Concesionario.DB.Entities
         [DisplayName("Patente")]
         public string Patent { get; set; }
 
+        [DisplayName("Foto")]
+        public byte[] Photo { get; set; }
+
         public bool Active { get; set; }
 
         public DateTime IncomeDate { get; set; }
