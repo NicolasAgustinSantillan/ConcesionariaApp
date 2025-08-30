@@ -46,20 +46,14 @@ namespace Ojeda.Concesionario
             LoadFormInMainPanel(view);
         }
 
-        private void LoadFormInMainPanel (Form form)
+        private void LoadFormInMainPanel(Form form)
         {
             panel_main.Controls.Clear();
-            var task = Task.Run(() =>
-            {
-                var view = form;
-                view.TopLevel = false;
-                view.FormBorderStyle = FormBorderStyle.None;
-                view.Dock = DockStyle.Fill;
-                return view;
-            });
 
-            task.Wait();
-            var view = task.Result;
+            var view = form;
+            view.TopLevel = false;
+            view.FormBorderStyle = FormBorderStyle.None;
+            view.Dock = DockStyle.Fill;
 
             panel_main.Controls.Add(view);
             view.Show();

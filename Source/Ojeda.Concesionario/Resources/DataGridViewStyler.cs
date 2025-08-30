@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Ojeda.Concesionario.Resources
 {
-    public abstract class DataGridCustom : Form
+    public class DataGridCustom : Form
     {
         public const string ActionColum = "Acciones";
         protected void CellPainting(DataGridView dgv, DataGridViewCellPaintingEventArgs e)

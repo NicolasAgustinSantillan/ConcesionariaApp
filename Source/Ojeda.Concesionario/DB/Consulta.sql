@@ -1,17 +1,18 @@
-﻿CREATE TABLE [Vehiculos] (
-    [Id]             INT IDENTITY(1,1) PRIMARY KEY,
-    [Code]         VARCHAR(10),
-    [Type]           VARCHAR(50),
-    [Brand]          VARCHAR(50),
-    [Model]         VARCHAR(50),
-    [Year]            INT,
+﻿CREATE TABLE [car] (
+    [Id] INT IDENTITY(1,1) PRIMARY KEY,
+    [Code] VARCHAR(10),
+    [Type] VARCHAR(50),
+    [Brand] VARCHAR(50),
+    [Model] VARCHAR(50),
+    [Year] INT,
     [Description] VARCHAR(255),
-    [Patent]        VARCHAR(50),
-    [Kilometers]    INT,
-    [Price]         DECIMAL(10, 2),
-    [Active]      BIT,
-    [IncomeDate]        DATETIME
+    [Patent] VARCHAR(50),
+    [Kilometers] INT DEFAULT 0,
+    [Price] DECIMAL(10, 2) DEFAULT 0.00,
+    [Active] BIT DEFAULT 1,
+    [IncomeDate] DATETIME DEFAULT GETDATE()
 );
+
 
 INSERT INTO Vehiculos (Code, Type, Brand, Model, Year, Description, Patent, Kilometers, Price, Active, IncomeDate)
 VALUES ('C001', 'SUV', 'Ford', 'EcoSport', 2021, 'Automática, techo solar', 'ABC123', 12000, 3000000.00, 1, GETDATE());

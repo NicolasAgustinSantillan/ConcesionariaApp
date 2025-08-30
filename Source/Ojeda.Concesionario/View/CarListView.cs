@@ -1,5 +1,6 @@
 ﻿using Ojeda.Concesionario.DB.DataAccess;
 using Ojeda.Concesionario.DB.Entities;
+using Ojeda.Concesionario.Dialog;
 using Ojeda.Concesionario.Resources;
 
 namespace Ojeda.Concesionario.View
@@ -33,7 +34,7 @@ namespace Ojeda.Concesionario.View
             {
                 this.dgv_cars.Rows.Clear();
             }
-            catch {}
+            catch { }
 
             Task.Run(() =>
             {
@@ -90,7 +91,7 @@ namespace Ojeda.Concesionario.View
 
             if (action == ActionEnum.Edit)
             {
-                MessageBox.Show($"Editar fila {e.RowIndex}");
+                this.CreateEditCar(carSelected);
             }
             else if (action == ActionEnum.Delete)
             {
@@ -100,6 +101,20 @@ namespace Ojeda.Concesionario.View
                 }
             }
 
+            this.LoadData();
+        }
+
+        private void btn_newcar_Click(object sender, EventArgs e)
+        {
+            this.CreateEditCar();
+        }
+
+        private void CreateEditCar(Car car = null)
+        {
+            var abm = new ABM_CAR(this.carRepository, car);
+
+            abm.ShowDialog();
+            
             this.LoadData();
         }
     }

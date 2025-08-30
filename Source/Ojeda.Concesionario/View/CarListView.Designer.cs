@@ -32,6 +32,7 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             label1 = new Label();
             dgv_cars = new DataGridView();
+            btn_newcar = new MaterialSkin.Controls.MaterialButton();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_cars).BeginInit();
             SuspendLayout();
@@ -42,12 +43,14 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Controls.Add(label1, 1, 0);
-            tableLayoutPanel1.Controls.Add(dgv_cars, 1, 1);
+            tableLayoutPanel1.Controls.Add(label1, 1, 1);
+            tableLayoutPanel1.Controls.Add(dgv_cars, 1, 2);
+            tableLayoutPanel1.Controls.Add(btn_newcar, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Size = new Size(1000, 600);
@@ -60,7 +63,7 @@
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(23, 15);
+            label1.Location = new Point(23, 65);
             label1.Margin = new Padding(3, 15, 3, 0);
             label1.Name = "label1";
             label1.Size = new Size(954, 35);
@@ -74,13 +77,34 @@
             dgv_cars.AllowUserToDeleteRows = false;
             dgv_cars.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_cars.Dock = DockStyle.Fill;
-            dgv_cars.Location = new Point(23, 53);
+            dgv_cars.Location = new Point(23, 103);
             dgv_cars.Name = "dgv_cars";
             dgv_cars.ReadOnly = true;
-            dgv_cars.Size = new Size(954, 544);
+            dgv_cars.Size = new Size(954, 494);
             dgv_cars.TabIndex = 0;
             dgv_cars.CellClick += dgv_cars_CellClick;
             dgv_cars.CellPainting += dgv_cars_CellPainting;
+            // 
+            // btn_newcar
+            // 
+            btn_newcar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btn_newcar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_newcar.Depth = 0;
+            btn_newcar.Dock = DockStyle.Right;
+            btn_newcar.HighEmphasis = true;
+            btn_newcar.Icon = null;
+            btn_newcar.Location = new Point(909, 6);
+            btn_newcar.Margin = new Padding(4, 6, 4, 6);
+            btn_newcar.MouseState = MaterialSkin.MouseState.HOVER;
+            btn_newcar.Name = "btn_newcar";
+            btn_newcar.NoAccentTextColor = Color.Empty;
+            btn_newcar.Size = new Size(67, 38);
+            btn_newcar.TabIndex = 2;
+            btn_newcar.Text = "Crear";
+            btn_newcar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_newcar.UseAccentColor = false;
+            btn_newcar.UseVisualStyleBackColor = true;
+            btn_newcar.Click += btn_newcar_Click;
             // 
             // CarListView
             // 
@@ -103,5 +127,6 @@
         private TableLayoutPanel tableLayoutPanel1;
         private DataGridView dgv_cars;
         private Label label1;
+        private MaterialSkin.Controls.MaterialButton btn_newcar;
     }
 }
