@@ -272,6 +272,7 @@ namespace Ojeda.Concesionario
             btn_home.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btn_home.UseAccentColor = false;
             btn_home.UseVisualStyleBackColor = true;
+            btn_home.Click += btn_home_Click;
             // 
             // panel_main
             // 

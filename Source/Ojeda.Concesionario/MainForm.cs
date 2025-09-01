@@ -17,6 +17,8 @@ namespace Ojeda.Concesionario
 
             tableLayoutPanel_ALL.Dock = DockStyle.Fill;  // ocupa todo menos el padding
             tableLayoutPanel_ALL.Margin = Padding.Empty;
+
+            btn_home_Click(null, null);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -46,6 +48,12 @@ namespace Ojeda.Concesionario
             LoadFormInMainPanel(view);
         }
 
+        private void btn_home_Click(object sender, EventArgs e)
+        {
+            var view = new HomeView();
+            LoadFormInMainPanel(view);
+        }
+
         private void LoadFormInMainPanel(Form form)
         {
             panel_main.Controls.Clear();
@@ -58,6 +66,7 @@ namespace Ojeda.Concesionario
             panel_main.Controls.Add(view);
             view.Show();
         }
+
 
     }
 }
