@@ -58,6 +58,9 @@ namespace Ojeda.Concesionario.View
                     v.IncomeDate
                 );
             }
+
+            txt_search.Text = string.Empty;
+            btn_clear.Enabled = false;
         }
 
         private Car? CurrentCarSelected()
@@ -114,8 +117,46 @@ namespace Ojeda.Concesionario.View
             var abm = new ABM_CAR(this.carRepository, car);
 
             abm.ShowDialog();
-            
+
             this.LoadData();
+        }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            string searchValue = txt_search.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(searchValue))
+                return;
+
+            foreach (DataGridViewRow row in dgv_cars.Rows)
+            {
+                bool match = false;
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null &&
+                        cell.Value.ToString().ToLower().Contains(searchValue))
+                    {
+                        match = true;
+                        break;
+                    }
+                }
+
+                row.Visible = match;
+            }
+
+            btn_clear.Enabled = true;
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            txt_search.Clear();
+
+            foreach (DataGridViewRow row in dgv_cars.Rows)
+                row.Visible = true;
+
+
+            btn_clear.Enabled = false;
         }
     }
 }
